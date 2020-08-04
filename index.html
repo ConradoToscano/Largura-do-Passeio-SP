@@ -1,0 +1,103 @@
+<html>
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Largura do Passeio SP</title>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+        <meta property="og:title" content="Largura do Passeio SP" />
+        <meta property="og:image" content="./img/printmapa.png" />
+        <meta property="og:url" content="https://www.larguradopasseio.sp" />
+        <meta property="og:description" content="Largura do Passeio SP é um mapa interativo que te permite explorar as calçadas de São Paulo e verificar se são adequadas ao distanciamento social" />
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <link rel='icon' href='./img/favicon.ico' type='image/x-icon'/>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/main.css"></link>
+
+    </head>
+    <body>
+
+        <div id="menu">
+            <button class="btn circle-btn" title="Sobre" onclick="toggleWindow('infoWindow')">
+                <img src="./img/logo.png"></img>
+            </button>
+    
+            <button class="btn circle-btn" title="Legenda" onclick="toggleWindow('legendWindow')">
+                <img src="./img/legend.png"></img>
+            </button>
+    
+            <button class="btn circle-btn" title="Gráficos" onclick="toggleWindow('chartsWindow')">
+                <img src="./img/charts.png"></img>
+            </button>
+    
+             <!--<button class="btn circle-btn" title="District" onclick="toggleWindow('selectWindow')">
+                <img src="./assets/group.png"></img>
+            </button> -->
+        </div>
+    
+        <div id="infoWindow" class="window landing" style="display:block">
+            <img id="landingClose" class="close" src="./img/close.svg" alt="fechar" onclick="toggleWindow('infoWindow')" style="display: none;">
+            <div class="content">
+                <h3>Bem vindo ao</h3>
+                <h1>Largura do Passeio SP</h1>
+                <p> Este mapa pretende ilustrar como a largura dos passeios comprometem a capacidade dos pedestres em praticar o distanciamento social. As larguras são determinadas a partir da base de dados georeferenciados de São Paulo <a href="https://data.cityofnewyork.us/City-Government/Sidewalk/vfx9-tbb6"> GeoSampa</a>, cuja precisão e completude não foram verfificadas.</p>
+                <p> O mapa foi adaptado do projeto <a href="https://www.sidewalkwidths.nyc"> Sidewalk Widths NYC </a> de Meli Harvey, para saber mais como o projeto foi desenvolvido visite a<a href="https://www.github.com/meliharvey/sidewalkwidths-nyc"> página do GitHub</a>.</p>
+                <p><small>ATENÇÃO<br>
+                Não use este mapa para tomar decisões que impactem sua saúde ou segurança. Outros importantes fatores como obstruções no passeio e intensidade do fluxo de pedestres não são considerados nos dados.</small></p>
+            </div>
+            <div id="enter" class="footer">
+                <div class="close-btn">
+                    <button class="btn" onclick="enterMap()">Explore o mapa</button>
+                </div>
+            </div>
+        </div>
+    
+        <div id="legendWindow" class="window menu" style="display: none;">
+            <img class="close" src="./img/close.svg" alt="fechar" onclick="toggleWindow('legendWindow')">
+            <div class="header">
+                    <h2>Legenda</h2>
+            </div>
+            <div class="content">
+                <ul id="legend-main" class="legend">
+                </ul>
+            </div>
+        </div>
+    
+        <div id="chartsWindow" class="window menu" style="display: none;">
+            <img class="close" src="./img/close.svg" alt="fechar" onclick="toggleWindow('chartsWindow')">
+            <div class="header">
+                    <h2>Gráficos</h2>
+            </div>
+            <div class="content">
+                <div class="row align-right">
+                    <button id="removeBrush" onclick="removeBrush()" class="btn btn-sm" style="visibility: hidden;">resetar seleção</button>
+                </div>
+                <div id="chartContainer" class="chart">
+                   
+                </div>
+                <div class="dropdown">
+                  <button id="chartDropdownButton" onclick="toggleDropdown()" class="btn dropdown-btn">SP Total</button>
+                  <div id="chartDropdown" class="dropdown-content">
+                    <ul>
+                        <li class="dropdown-header">Cidade</li>
+                        <li class="dropdown-item" onclick="selectArea('cidade','SP Total');">Sp Total</li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+      <div id="map"></div>
+    
+    
+        <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v0.18.0/mapbox-gl-draw.js'></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css" type="text/css" />
+        <script src="js/settings.js"></script>
+        <script src="js/app.js"></script>
+        <script src="./js/grafico.js"></script>
+    
+    </body>
+</html>
+

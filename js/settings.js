@@ -24,12 +24,12 @@ var GROUPS = [
   },
   {
     "value": 3.5,
-    "rating": "pouco difícil",
+    "rating": "relativamente difícil",
     "color": "#e4da27"
   },
   {
     "value": 4.5,
-    "rating": "pouco fácil",
+    "rating": "relativamente fácil",
     "color": "#1ce262"
   },
   {

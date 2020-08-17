@@ -177,7 +177,7 @@ map.addLayer({
     var description =
       '<div class="name">Largura do passeio:</div>' +
       '<div class="width">' + (Math.round(lineWidth * 10) / 10) + ' ' + UNITS + '</div>' +
-      '<div class="message">O distanciamneto social é ' + GROUPS[groupIndex].rating + ' nesta calçada</div>'
+      '<div class="message">O distanciamento social é ' + GROUPS[groupIndex].rating + ' nesta calçada</div>'
 
     popup.setLngLat(coordinates)
     popup.setHTML(description)
